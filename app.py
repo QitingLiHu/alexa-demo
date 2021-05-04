@@ -11,6 +11,13 @@ files = ["onus check", "a2a deposit", "limits"]
 
 app = Flask(__name__)
 
+
+@app.route("/")
+def home():
+	print("Se ha conectado una persona")
+	return 'Welcome to the piece of shit server'
+
+	
 def getRandomData(id):
 	today = datetime.date.today()
 	date = str(today.day) + '-' + str(today.month) + '-' + str(today.year)
@@ -63,7 +70,8 @@ def getLastExecutionInformation():
 	print(ejecuciones)
 	return ejecuciones[key];
 
-app.run(host='0.0.0.0', port=81)
+if __name__ == "__main__":
+	app.run(debug=True)
 
 
 
