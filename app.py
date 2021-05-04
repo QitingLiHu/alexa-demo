@@ -74,15 +74,15 @@ def getLastExecutionInformation():
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
-   	req = request.get_json(silent=True, force=True)
-  	fulfillmentText = ''
-  	query_result = req.get('queryResult')
-  	if query_result.get('action') == 'carga_de_alertas':
-    	fulfillmentText = 'He cargado el fichero con id ' + id
-  	return {
-        "fulfillmentText": fulfillmentText,
-        "source": "webhookdata"
-    }
+	req = request.get_json(silent=True, force=True)
+	fulfillmentText = ''
+	query_result = req.get('queryResult')
+	if query_result.get('action') == 'carga_de_alertas':
+		fulfillmentText = 'He cargado el fichero con id ' + id
+	return {
+		"fulfillmentText": fulfillmentText,
+		"source": "webhookdata"
+	}
    
 
 if __name__ == "__main__":
