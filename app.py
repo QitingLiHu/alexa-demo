@@ -78,6 +78,7 @@ def webhook():
 	fulfillmentText = ''
 	query_result = req.get('queryResult')
 	if query_result.get('action') == 'carga_de_alertas':
+		insertData()
 		fulfillmentText = 'He cargado el fichero con id ' + id
 	return {
 		"fulfillmentText": fulfillmentText,
