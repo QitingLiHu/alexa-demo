@@ -83,7 +83,6 @@ def webhook():
 		"fulfillmentText": fulfillmentText,
 		"source": "webhookdata"
 	}
-   
 
 if __name__ == "__main__":
 	app.run(debug=True)
