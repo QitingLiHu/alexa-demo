@@ -11,6 +11,11 @@ files = ["onus check", "a2a deposit", "limits"]
 
 app = Flask(__name__)
 
+@app.route("/")
+def home():
+	print("Se ha conectado una persona")
+	return 'Welcome to the piece of shit server'
+
 def getRandomData(id):
 	today = datetime.date.today()
 	date = str(today.day) + '-' + str(today.month) + '-' + str(today.year)
