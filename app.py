@@ -22,7 +22,7 @@ def home():
 def getRandomData(id):
 	today = datetime.date.today()
 	date = str(today.day) + '-' + str(today.month) + '-' + str(today.year)
-
+	
 	datos = {
 	'id':int(id) + 1,
 	'dia':date,
@@ -74,6 +74,7 @@ def getLastExecutionInformation():
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
+	print('webhook')
 	req = request.get_json(silent=True, force=True)
 	fulfillmentText = ''
 	query_result = req.get('queryResult')
@@ -82,8 +83,9 @@ def webhook():
 		fulfillmentText = 'He cargado el fichero con id ' + id
 	return {
 		"fulfillmentText": fulfillmentText,
-		"source": "webhookdata"
-	}
+		"source": "webhookdata" 
+		}
+
 
 if __name__ == "__main__":
 	app.run(debug=True)
