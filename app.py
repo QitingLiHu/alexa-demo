@@ -22,7 +22,7 @@ def home():
 def getRandomData(id):
 	today = datetime.date.today()
 	date = str(today.day) + '-' + str(today.month) + '-' + str(today.year)
-	global redId
+	global resId
 	resId = int(id) + 1
 	datos = {
 	'id':resId,
