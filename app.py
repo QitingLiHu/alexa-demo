@@ -83,6 +83,13 @@ def webhook():
 	if query_result.get('action') == 'carga_de_alertas':
 		insertData()
 		fulfillmentText = 'He cargado el fichero con id ' + str(resId)
+	elif query_result.get('action') == 'ejecucion':
+		info = getLastExecutionInformation()
+		if 'tiempo_ejecucion' in query_result.get('parameters'):
+			fulfillmentText = 'La última ejecucíón con id ' + str(info['id']) + ' duró ' + info['tiempo_ejecucion'] + ' segundos'
+		elif 'numero_alertas' in query_result.get('parameters'):
+			fulfillmentText = 'En la última ejecución con id ' + str(info['id']) + ' se cargaron ' + info['tickets'] + ' alertas'
+
 	return {
 		"fulfillmentText": fulfillmentText,
 		"source": "webhookdata" 
@@ -91,7 +98,6 @@ def webhook():
 
 if __name__ == "__main__":
 	app.run(debug=True)
-
 
 
 
