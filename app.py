@@ -85,9 +85,11 @@ def webhook():
 		fulfillmentText = 'He cargado el fichero con id ' + str(resId)
 	elif query_result.get('action') == 'ejecucion':
 		info = getLastExecutionInformation()
-		if 'tiempo_ejecucion' in query_result.get('parameters'):
+		parameters = query_result.get('parameters')
+		print(parameters)
+		if parameters.get('tiempo_ejecucion') != '':
 			fulfillmentText = 'La última ejecucíón con id ' + str(info['id']) + ' duró ' + info['tiempo_ejecucion'] + ' segundos'
-		elif 'numero_alertas' in query_result.get('parameters'):
+		elif parameters.get('numero_alertas') != '':
 			fulfillmentText = 'En la última ejecución con id ' + str(info['id']) + ' se cargaron ' + info['tickets'] + ' alertas'
 	return {
 		"fulfillmentText": fulfillmentText,
