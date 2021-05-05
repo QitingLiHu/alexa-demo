@@ -80,7 +80,7 @@ def webhook():
 	query_result = req.get('queryResult')
 	if query_result.get('action') == 'carga_de_alertas':
 		insertData()
-		fulfillmentText = 'He cargado el fichero con id ' + id
+		fulfillmentText = 'He cargado el fichero con id '
 	return {
 		"fulfillmentText": fulfillmentText,
 		"source": "webhookdata" 
