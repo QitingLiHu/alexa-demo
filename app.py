@@ -89,7 +89,6 @@ def webhook():
 			fulfillmentText = 'La última ejecucíón con id ' + str(info['id']) + ' duró ' + info['tiempo_ejecucion'] + ' segundos'
 		elif 'numero_alertas' in query_result.get('parameters'):
 			fulfillmentText = 'En la última ejecución con id ' + str(info['id']) + ' se cargaron ' + info['tickets'] + ' alertas'
-
 	return {
 		"fulfillmentText": fulfillmentText,
 		"source": "webhookdata" 
