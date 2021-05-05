@@ -34,7 +34,7 @@ def getRandomData(id):
 
 @app.route('/hello')
 def index():
-    return 'Hello everybody! I see Iudit, Sera, Nera, Cuitin, Fores, Joje, Alex Dinera'
+    return 'Hello everybody! I see Iudit, Sera, Nera, Cuitin, Fores, Joje, Alex Dinera, Soufia, Tela'
 
 @app.route('/getData')
 def getData():
