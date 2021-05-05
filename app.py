@@ -21,7 +21,8 @@ def home():
 def getRandomData(id):
 	today = datetime.date.today()
 	date = str(today.day) + '-' + str(today.month) + '-' + str(today.year)
-	global ID = int(id) + 1
+	global ID 
+	ID = int(id) + 1
 	datos = {
 	'id':global_id,
 	'dia':date,
