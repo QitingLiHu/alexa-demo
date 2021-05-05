@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from firebase import firebase
 import json
 import random
