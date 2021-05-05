@@ -78,6 +78,7 @@ def webhook():
 	req = request.get_json(silent=True, force=True)
 	fulfillmentText = ''
 	query_result = req.get('queryResult')
+	print('fine so far')
 	if query_result.get('action') == 'carga_de_alertas':
 		insertData()
 		fulfillmentText = 'He cargado el fichero con id '
