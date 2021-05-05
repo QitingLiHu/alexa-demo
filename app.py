@@ -25,7 +25,7 @@ def getRandomData(id):
 	global redId
 	resId = int(id) + 1
 	datos = {
-	'id':global_id,
+	'id':resId,
 	'dia':date,
 	'fichero':files[random.randint(0, 2)],
 	'tickets':random.randint(1, 2000),
