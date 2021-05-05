@@ -21,7 +21,7 @@ def home():
 def getRandomData(id):
 	today = datetime.date.today()
 	date = str(today.day) + '-' + str(today.month) + '-' + str(today.year)
-	global id = int(id) + 1
+	global ID = int(id) + 1
 	datos = {
 	'id':global_id,
 	'dia':date,
@@ -80,7 +80,7 @@ def webhook():
 	print('fine so far')
 	if query_result.get('action') == 'carga_de_alertas':
 		insertData()
-		fulfillmentText = 'He cargado el fichero con id ' + str(id)
+		fulfillmentText = 'He cargado el fichero con id ' + str(ID)
 	return {
 		"fulfillmentText": fulfillmentText,
 		"source": "webhookdata" 
