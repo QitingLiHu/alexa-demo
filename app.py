@@ -11,7 +11,7 @@ files = ["onus check", "a2a deposit", "limits"]
 
 app = Flask(__name__)
 
-id = 0
+global_id = 0
 
 @app.route("/")
 def home():
@@ -22,9 +22,9 @@ def home():
 def getRandomData(id):
 	today = datetime.date.today()
 	date = str(today.day) + '-' + str(today.month) + '-' + str(today.year)
-	
+	global_id = int(id) + 1
 	datos = {
-	'id':int(id) + 1,
+	'id':global_id,
 	'dia':date,
 	'fichero':files[random.randint(0, 2)],
 	'tickets':random.randint(1, 2000),
@@ -81,7 +81,7 @@ def webhook():
 	print('fine so far')
 	if query_result.get('action') == 'carga_de_alertas':
 		insertData()
-		fulfillmentText = 'He cargado el fichero con id ' + str(id)
+		fulfillmentText = 'He cargado el fichero con id ' + str(global_id)
 	return {
 		"fulfillmentText": fulfillmentText,
 		"source": "webhookdata" 
