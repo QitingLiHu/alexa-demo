@@ -18,7 +18,10 @@ def home():
 	print("Se ha conectado una persona")
 	return 'Welcome to the piece of shit server'
 
-	
+def getContador():
+	ficheros = firebase.get('/demo/ficheros','')
+	return contador['contador']
+
 def getRandomData(id):
 	today = datetime.date.today()
 	date = str(today.day) + '-' + str(today.month) + '-' + str(today.year)
@@ -100,6 +103,15 @@ def webhook():
 		"fulfillmentText": fulfillmentText,
 		"source": "webhookdata" 
 		}
+
+@app.route('/sendFiles')
+def sendFilesToLZ():
+
+	contador = int(getContador())
+
+	resultado = firebase.put('/demo/ficheros', 'contador', contador + 1)
+
+	return resultado
 
 
 if __name__ == "__main__":
