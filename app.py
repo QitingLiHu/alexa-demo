@@ -19,8 +19,16 @@ def home():
 	return 'Welcome to the piece of shit server'
 
 def getContador():
-	ficheros = firebase.get('/demo/ficheros','')
-	return contador['contador']
+	return firebase.get('/demo/ficheros/contador','')
+
+def updateLZFiles(ficheros):
+
+	contador = getContador() + ficheros
+
+	resultado = firebase.put('/demo/ficheros', 'contador', contador)
+
+	return str(contador)
+
 
 def getRandomData(id):
 	today = datetime.date.today()
@@ -86,6 +94,20 @@ def webhook():
 	if query_result.get('action') == 'carga_de_alertas':
 		insertData()
 		fulfillmentText = 'He cargado el fichero con id ' + str(resId)
+	elif query_result.get('action') == 'actualizar_ficheros':
+		parameters = query_result.get('parameters')
+
+		if parameters.get('actualiza_ficheros') == 'envia':
+			if len(parameters.get('number-integer')) > 0:
+				updateLZFiles(parameters.get('number-integer'))
+			else: 
+				updateLZFiles(1)
+		elif parameters.get('actualiza_ficheros') == 'elimina':
+			if len(parameters.get('number-integer')) > 0:
+				 updateLZFiles(parameters.get('number-integer') * -1)
+			else: 
+				updateLZFiles(-1)
+
 	elif query_result.get('action') == 'ejecucion':
 		info = getLastExecutionInformation()
 		parameters = query_result.get('parameters')
@@ -104,14 +126,13 @@ def webhook():
 		"source": "webhookdata" 
 		}
 
-@app.route('/sendFiles')
-def sendFilesToLZ():
+def sendFilesToLZ(ficheros):
 
-	contador = int(getContador())
+	contador = getContador() + ficheros
 
-	resultado = firebase.put('/demo/ficheros', 'contador', contador + 1)
+	resultado = firebase.put('/demo/ficheros', 'contador', contador)
 
-	return resultado
+	return str(contador)
 
 
 if __name__ == "__main__":
