@@ -90,25 +90,37 @@ def webhook():
 	req = request.get_json(silent=True, force=True)
 	fulfillmentText = ''
 	query_result = req.get('queryResult')
-	print('fine so far')
+
 	if query_result.get('action') == 'carga_de_alertas':
-		insertData()
-		fulfillmentText = 'He cargado el fichero con id ' + str(resId)
+		if getContador > 0:
+			insertData()
+			fulfillmentText = 'He cargado el fichero con id ' + str(resId)
+		else:
+			fulfillmentText = 'No hay ficheros para cargar.'
+
 	elif query_result.get('action') == 'actualizar_ficheros':
 		parameters = query_result.get('parameters')
-		print(parameters)
+		operacion = ''
+		ficheros = 1
 		if parameters.get('actualiza_ficheros') == 'envia':
-			print('rd2d')
+			operacion = 'Se han añadido '
 			if len(str(parameters.get('number-integer'))) > 0:
-				print('envio')
-				updateLZFiles(int(parameters.get('number-integer')))
+				ficheros = int(parameters.get('number-integer'))
+				updateLZFiles(ficheros)
 			else: 
 				updateLZFiles(1)
 		elif parameters.get('actualiza_ficheros') == 'elimina':
+			operacion = 'Se han eliminado '
 			if len(str(parameters.get('number-integer'))) > 0:
-				 updateLZFiles(int(parameters.get('number-integer')) * -1)
+				ficheros = int(parameters.get('number-integer'))
+				updateLZFiles(ficheros * -1)
 			else: 
 				updateLZFiles(-1)
+
+		fulfillmentText = operacion + ficheros + ' ficheros a la landing zone. Actualmente hay ' + str(getContador) + ' ficheros.'
+
+	elif query_result.get('action') == 'numero_ficheros':
+		fulfillment = 'Hay ' + str(getContador) + ' ficheros.'
 
 	elif query_result.get('action') == 'ejecucion':
 		info = getLastExecutionInformation()
