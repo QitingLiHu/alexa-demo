@@ -119,6 +119,10 @@ def webhook():
 		fulfillmentText = operacion + str(ficheros) + ' ficheros. Actualmente hay ' + str(getContador()) + ' ficheros.'
 
 	elif query_result.get('action') == 'numero_ficheros':
+		text = 'ficheros.'
+		ficheros = getContador()
+		if ficheros == 1:
+			text = 'fichero.'
 		fulfillmentText = 'Hay ' + str(getContador()) + ' ficheros.'
 
 	elif query_result.get('action') == 'ejecucion':
