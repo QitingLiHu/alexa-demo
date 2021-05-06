@@ -116,7 +116,12 @@ def webhook():
 			else: 
 				updateLZFiles(-1)
 
-		fulfillmentText = operacion + str(ficheros) + ' ficheros. Actualmente hay ' + str(getContador()) + ' ficheros.'
+		ficheros = getContador()
+
+		text = ' ficheros.'
+		if ficheros == 1:
+			text = 'fichero.'
+		fulfillmentText = operacion + str(ficheros) + ' ficheros. Actualmente hay ' + str(getContador()) + text
 
 	elif query_result.get('action') == 'numero_ficheros':
 		text = 'ficheros.'
