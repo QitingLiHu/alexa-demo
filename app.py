@@ -22,7 +22,7 @@ def getContador():
 	return firebase.get('/demo/ficheros/contador','')
 
 def updateLZFiles(ficheros):
-
+	print(ficheros)
 	contador = getContador() + ficheros
 
 	resultado = firebase.put('/demo/ficheros', 'contador', contador)
@@ -96,7 +96,7 @@ def webhook():
 		fulfillmentText = 'He cargado el fichero con id ' + str(resId)
 	elif query_result.get('action') == 'actualizar_ficheros':
 		parameters = query_result.get('parameters')
-
+		print(parameters)
 		if parameters.get('actualiza_ficheros') == 'envia':
 			if len(parameters.get('number-integer')) > 0:
 				updateLZFiles(parameters.get('number-integer'))
