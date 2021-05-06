@@ -105,7 +105,6 @@ def webhook():
 			operacion = 'Se han añadido '
 			if len(str(parameters.get('number-integer'))) > 0:
 				ficheros = int(parameters.get('number-integer'))
-				print(ficheros)
 				updateLZFiles(ficheros)
 			else: 
 				updateLZFiles(1)
@@ -117,7 +116,7 @@ def webhook():
 			else: 
 				updateLZFiles(-1)
 
-		fulfillmentText = operacion + ficheros + ' ficheros a la landing zone. Actualmente hay ' + str(getContador) + ' ficheros.'
+		fulfillmentText = operacion + str(ficheros) + ' ficheros a la landing zone. Actualmente hay ' + str(getContador) + ' ficheros.'
 
 	elif query_result.get('action') == 'numero_ficheros':
 		fulfillmentText = 'Hay ' + str(getContador) + ' ficheros.'
