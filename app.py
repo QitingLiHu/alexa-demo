@@ -91,10 +91,11 @@ def webhook():
 		print(info)
 		if len(parameters.get('tiempo_ejecucion')) > 0:
 			print('tiempo de ejecucion')
-			fulfillmentText = 'La última ejecución con id ' + str(info['id']) + ' duró ' + info['tiempo_ejecucion'] + ' segundos'
+			fulfillmentText = 'La última ejecución con id ' + str(info['id']) + ' duró ' + str(info['tiempo_ejecucion']) + ' segundos'
 		elif len(parameters.get('numero_alertas')) > 0:
 			print('numero de alertas')
-			fulfillmentText = 'En la última ejecución con id ' + str(info['id']) + ' se cargaron ' + info['tickets'] + ' alertas'
+			fulfillmentText = 'En la última ejecución con id ' + str(info['id']) + ' se cargaron ' + str(info['tickets']) + ' alertas'
+
 	return {
 		"fulfillmentText": fulfillmentText,
 		"source": "webhookdata" 
