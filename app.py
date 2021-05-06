@@ -91,7 +91,7 @@ def webhook():
 	query_result = req.get('queryResult')
 
 	if query_result.get('action') == 'carga_de_alertas':
-		if getContador > 0:
+		if getContador() > 0:
 			insertData()
 			fulfillmentText = 'He cargado el fichero con id ' + str(resId)
 		else:
