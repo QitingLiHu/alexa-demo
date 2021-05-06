@@ -67,7 +67,6 @@ def getLastExecution():
 	info = getLastExecutionInformation()
 
 	return('La última ejecución fue la número %s, con fecha %s. Se cargaron %s tickets del fichero %s con un tiempo de ejecución de %s segundos.' % (info['id'], info['dia'], info['tickets'], info['fichero'], info['tiempo_ejecucion']))
- 
 
 def getLastExecutionInformation():
 	#value_at_index = ejecuciones.values()[len(ejecuciones)]
@@ -106,6 +105,7 @@ def webhook():
 			operacion = 'Se han añadido '
 			if len(str(parameters.get('number-integer'))) > 0:
 				ficheros = int(parameters.get('number-integer'))
+				print(ficheros)
 				updateLZFiles(ficheros)
 			else: 
 				updateLZFiles(1)
@@ -120,7 +120,7 @@ def webhook():
 		fulfillmentText = operacion + ficheros + ' ficheros a la landing zone. Actualmente hay ' + str(getContador) + ' ficheros.'
 
 	elif query_result.get('action') == 'numero_ficheros':
-		fulfillment = 'Hay ' + str(getContador) + ' ficheros.'
+		fulfillmentText = 'Hay ' + str(getContador) + ' ficheros.'
 
 	elif query_result.get('action') == 'ejecucion':
 		info = getLastExecutionInformation()
