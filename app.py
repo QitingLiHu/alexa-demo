@@ -123,7 +123,7 @@ def webhook():
 		ficheros = getContador()
 		if ficheros == 1:
 			text = 'fichero.'
-		fulfillmentText = 'Hay ' + str(getContador()) + ' ficheros.'
+		fulfillmentText = 'Hay ' + str(getContador()) + text
 
 	elif query_result.get('action') == 'ejecucion':
 		info = getLastExecutionInformation()
