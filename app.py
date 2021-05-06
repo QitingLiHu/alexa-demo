@@ -99,14 +99,13 @@ def webhook():
 		print(parameters)
 		if parameters.get('actualiza_ficheros') == 'envia':
 			print('rd2d')
-			print('sdfsdf ' + str(parameters.get('number-integer')))
-			if len(parameters.get('number-integer')) > 0:
+			if len(str(parameters.get('number-integer'))) > 0:
 				print('envio')
 				updateLZFiles(int(parameters.get('number-integer')))
 			else: 
 				updateLZFiles(1)
 		elif parameters.get('actualiza_ficheros') == 'elimina':
-			if len(parameters.get('number-integer')) > 0:
+			if len(str(parameters.get('number-integer'))) > 0:
 				 updateLZFiles(int(parameters.get('number-integer')) * -1)
 			else: 
 				updateLZFiles(-1)
