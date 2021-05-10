@@ -121,7 +121,7 @@ def webhook():
 		text = ' ficheros.'
 		if ficheros == 1:
 			text = 'fichero.'
-		fulfillmentText = operacion + str(parameters.get('number-integer')) + ' ficheros. Actualmente hay ' + str(getContador()) + text
+		fulfillmentText = operacion + str(int(parameters.get('number-integer'))) + ' ficheros. Actualmente hay ' + str(getContador()) + text
 
 	elif query_result.get('action') == 'numero_ficheros':
 		text = 'ficheros.'
